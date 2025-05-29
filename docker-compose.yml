@@ -1,6 +1,13 @@
+<<<<<<< HEAD
 # Удалена устаревшая директива version
 
 services:
+=======
+version: "3.8"
+
+services:
+
+>>>>>>> 3cba590e36b7cfedd5514f1f259e1977e72406bc
   db:
     build: ./db
     restart: always
@@ -11,9 +18,15 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: password
       MONGO_INITDB_DATABASE: sunsayShop
     ports:
+<<<<<<< HEAD
       - '27088:27017'
     healthcheck:
       test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')", "--quiet"]
+=======
+      - '27017:27017'
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongo db:27017/test --quiet
+>>>>>>> 3cba590e36b7cfedd5514f1f259e1977e72406bc
       interval: 10s
       timeout: 10s
       retries: 3
@@ -29,13 +42,19 @@ services:
     depends_on:
       db:
         condition: service_healthy
+<<<<<<< HEAD
     environment:
       - MONGO_URI=mongodb://root:password@db:27017/sunsayShop?authSource=admin
+=======
+>>>>>>> 3cba590e36b7cfedd5514f1f259e1977e72406bc
 
   frontend:
     build:
       context: ./frontend
     ports:
       - "3000:3000"
+<<<<<<< HEAD
     depends_on:
       - backend
+=======
+>>>>>>> 3cba590e36b7cfedd5514f1f259e1977e72406bc
